@@ -76,7 +76,7 @@ jobs:
         echo "::set-output name=artifact::${path##*/}"
       shell: bash
     - name: Tag Release
-      uses: mathieudutour/github-tag-action@v6.0
+      uses: mathieudutour/github-tag-action@v6.1
       with:
         custom_tag: ${{ steps.determine_version.outputs.semVer }}
         github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -115,16 +115,16 @@ jobs:
       uses: OctopusDeploy/push-package-action@v3
       env:
         OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
-        OCTOPUS_HOST: ${{ secrets.OCTOPUS_SERVER_URL }}
+        OCTOPUS_URL: ${{ secrets.OCTOPUS_SERVER_URL }}
         OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE_ID }}
       with:
         packages: ${{ steps.get_octopus_artifact.outputs.artifact }}
         overwrite_mode: OverwriteExisting
     - name: Generate Octopus Deploy build information
-      uses: OctopusDeploy/push-build-information-action@v1
+      uses: OctopusDeploy/push-build-information-action@v3
       env:
         OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
-        OCTOPUS_HOST: ${{ secrets.OCTOPUS_SERVER_URL }}
+        OCTOPUS_URL: ${{ secrets.OCTOPUS_SERVER_URL }}
         OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE_ID }}
       with:
         version: ${{ steps.determine_version.outputs.semVer }}
