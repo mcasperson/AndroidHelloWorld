@@ -125,6 +125,7 @@ jobs:
       env:
         OCTOPUS_API_KEY: ${{ secrets.OCTOPUS_API_TOKEN }}
         OCTOPUS_HOST: ${{ secrets.OCTOPUS_SERVER_URL }}
+        OCTOPUS_SPACE: ${{ secrets.OCTOPUS_SPACE_ID }}
       with:
         version: ${{ steps.determine_version.outputs.semVer }}
         packages: AndroidHelloWorld
