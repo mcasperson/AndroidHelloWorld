@@ -66,7 +66,7 @@ jobs:
       name: Get Artifact Path
       run: |-
         # Find the APK file
-        echo "::set-output name=artifact::$(find app/build/outputs/apk/release -type f \( -o -iname \*.apk \) -printf "%p\n" | sort -n | head -1)"
+        echo "::set-output name=artifact::$(find app/build/outputs/apk/release -type f \( -iname \*.apk \) -printf "%p\n" | sort -n | head -1)"
       shell: bash
     - id: get_artifact_name
       name: Get Artifact Name
