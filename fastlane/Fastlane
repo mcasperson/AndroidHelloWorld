@@ -1,0 +1,9 @@
+platform :android do
+    desc "My awesome app"
+    lane :distribute do
+        firebase_app_distribution(
+            app: "1:370892727098:android:66ac709ce483dfeb4d2603",
+            testers: "matthewcasperson@gmail.com",
+        )
+    end
+end
