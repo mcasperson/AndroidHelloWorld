@@ -90,15 +90,6 @@ jobs:
         release_name: Release ${{ steps.determine_version.outputs.semVer }} Run ${{ github.run_number }} Attempt ${{ github.run_attempt }}
         draft: 'false'
         prerelease: 'false'
-    - name: Upload Release Asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ${{ steps.get_artifact.outputs.artifact }}
-        asset_name: ${{ steps.get_artifact_name.outputs.artifact }}
-        asset_content_type: application/octet-stream
     - id: get_octopus_artifact
       name: Create Octopus Artifact
       run: |
@@ -117,6 +108,15 @@ jobs:
         octoversion="AndroidHelloWorld:${{ steps.determine_version.outputs.semVer }}"
         echo "::set-output name=octoversion::${octoversion}"
       shell: bash
+    - name: Upload Release Asset
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: AndroidHelloWorld:${{ steps.determine_version.outputs.semVer }}.zip
+        asset_name: AndroidHelloWorld:${{ steps.determine_version.outputs.semVer }}.zip
+        asset_content_type: application/octet-stream
     - name: Push packages to Octopus Deploy
       uses: OctopusDeploy/push-package-action@v3
       env:
