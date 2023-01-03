@@ -105,7 +105,12 @@ jobs:
         # Octopus expects artifacts to have a specific file format
         cp ${{ steps.get_artifact.outputs.artifact }} .
         octofile="AndroidHelloWorld.${{ steps.determine_version.outputs.semVer }}.zip"
-        zip ${octofile} ${{ steps.get_artifact_name.outputs.artifact }} fastlane/Fastlane
+        zip ${octofile} \
+        	${{ steps.get_artifact_name.outputs.artifact }} \
+        	fastlane/Fastlane \
+        	fastlane/Pluginfile \
+        	Gemfile \
+        	Gemfile.lock
         echo "::set-output name=artifact::${octofile}"
         # The version used when creating a release is the package id, colon, and version
         octoversion="AndroidHelloWorld:${{ steps.determine_version.outputs.semVer }}"
