@@ -107,7 +107,8 @@ jobs:
         octofile="AndroidHelloWorld.${{ steps.determine_version.outputs.semVer }}.zip"
         zip ${octofile} \
         	${{ steps.get_artifact_name.outputs.artifact }} \
-        	fastlane/Fastlane \
+        	fastlane/Fastfile \
+        	fastlane/Appfile \
         	fastlane/Pluginfile \
         	Gemfile \
         	Gemfile.lock
