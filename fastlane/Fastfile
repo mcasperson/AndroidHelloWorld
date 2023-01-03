@@ -1,12 +1,12 @@
 platform :android do
     desc "My awesome app"
-    
     lane :staging do
         firebase_app_distribution(
             app: "1:231416499865:android:573ae74a4b3acc99193208",
             testers: "matthewcasperson@gmail.com",
             android_artifact_type: "APK",
-            android_artifact_path: "app-release-unsigned.apk"
+            android_artifact_path: "app-release-unsigned.apk",
+            service_credentials_file: "google.json"
         )
     end
     
