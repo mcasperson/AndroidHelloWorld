@@ -4,7 +4,7 @@ platform :android do
         firebase_app_distribution(
             app: "1:370892727098:android:66ac709ce483dfeb4d2603",
             testers: "matthewcasperson@gmail.com",
-            android_artifact_type: "apk",
+            android_artifact_type: "APK",
             android_artifact_path: "app-release-unsigned.apk"
         )
     end
