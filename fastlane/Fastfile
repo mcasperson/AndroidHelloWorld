@@ -11,8 +11,6 @@ platform :android do
     end
     
     lane :production do
-        upload_to_play_store(
-            apk: "app-release-unsigned.apk"
-        )
+        slack(message: "App successfully released!")
     end
 end
